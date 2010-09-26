@@ -1,5 +1,9 @@
+
+
+
+
 var BallDragger = {
-  initialize: function(gameBoard) { 
+  initialize: function(gameBoard) {
     var field, startBox, startBoxPosition, ball;
     field = gameBoard.find("#field");
     startBox = field.find("#ball-start");
