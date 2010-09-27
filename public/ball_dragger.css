@@ -1,6 +1,6 @@
 #game-board {
   width: 500px;
-  height: 500px; 
+  height: 500px;
   border: 1px solid black;
 }
 
@@ -35,6 +35,16 @@
   position:absolute;
   border: 1px solid red;
   background: red;
+}
+
+#ball-not-destination {
+  left:10px;
+  top:150px;
+  width: 100px;
+  height: 100px;
+  position:absolute;
+  border: 1px solid blue;
+  background: blue;
 }
 
 #ball {
