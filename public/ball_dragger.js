@@ -1,38 +1,27 @@
 var BallDragger = {
   initialize: function(gameBoard) {
-    var field, startBox, startBoxPosition,
-        destinationBox, destinationBoxPosition,
-        resultDisplay, ball, game;
+    var field, ball, game,
+        startBox, startBoxPosition,
+        destinationBox, destinationBoxPosition;
+
     field = gameBoard.find("#field");
 
     startBox = field.find("#ball-start");
     startBoxPosition = startBox.position();
-
     destinationBox = field.find("#ball-destination");
+    destinationBoxPosition = destinationBox.position();
 
     ball = $("<div id='ball'></div>");
-    resultDisplay = gameBoard.find("#results");
 
+    function ballIsInsideDestination() {
+      ballPosition = ball.position();
 
-    function inside(element, thisContainer) {
-      var elementPosition, thisContainerPosition;
-
-      thisContainerPosition = thisContainer.position();
-      elementPosition = element.position();
-
-      console.log(elementPosition);
-      console.log(thisContainerPosition);
-
-      inside = (elementPosition.left >= thisContainerPosition.left) &&
-      (elementPosition.left <= thisContainerPosition.left + thisContainer.width()) &&
-      (elementPosition.top >= thisContainerPosition.top) &&
-      (elementPosition.top <= thisContainerPosition.top + thisContainer.height());
+      inside = (ballPosition.left >= destinationBoxPosition.left) &&
+        (ballPosition.left <= destinationBoxPosition.left + destinationBox.width()) &&
+        (ballPosition.top >= destinationBoxPosition.top) &&
+        (ballPosition.top <= destinationBoxPosition.top + destinationBox.height());
 
       return inside;
-    }
-
-    function hasWon() {
-      return inside(ball, destinationBox);
     }
 
     game = {
@@ -41,17 +30,18 @@ var BallDragger = {
         ball.css("left", startBoxPosition.left);
         ball.css("top", startBoxPosition.top);
       },
-      ballDropped: function() {
-        if(hasWon()){
+      processEndGame: function processEndGame(event, ui) {
+        var resultDisplay = gameBoard.find("#results");
+        if(ballIsInsideDestination()){
           resultDisplay.text("You Win!");
         }else{
-          resultDisplay.text("You Lose");
+          resultDisplay.text("You Lose!");
         }
       }
     };
 
     ball.draggable({containment:"#field",
-                  stop: game.ballDropped});
+                  stop: game.processEndGame});
 
     return game;
   }

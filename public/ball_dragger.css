@@ -37,14 +37,14 @@
   background: red;
 }
 
-#ball-not-destination {
+#ball-outside-destination {
   left:10px;
   top:150px;
   width: 100px;
   height: 100px;
   position:absolute;
-  border: 1px solid blue;
-  background: blue;
+  border: 1px solid orange;
+  background: orange;
 }
 
 #ball {

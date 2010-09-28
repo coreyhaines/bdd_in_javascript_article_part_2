@@ -30,7 +30,7 @@ describe("BallDragger#start", function() {
   });
 });
 
-describe("BallDragger#dropped", function(){
+xdescribe("BallDragger#dropped", function(){
   var gameBoard, originalGameBoardStructure, ballDraggerGame;
 
   beforeEach(function() {
